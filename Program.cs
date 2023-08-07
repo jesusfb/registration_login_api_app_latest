@@ -67,13 +67,13 @@ var app = builder.Build();
     var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();    
     dataContext.Database.Migrate();
 }*/
-
+/*
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<DataContext>();
     context.Database.Migrate();
-}
+}*/
 // configure HTTP request pipeline
 {
     // global cors policy
