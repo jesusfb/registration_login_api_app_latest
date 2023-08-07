@@ -98,5 +98,4 @@ app.UseSwagger();
     options.RoutePrefix = string.Empty;
 });*/
 app.UseSwaggerUI();
-
 app.Run();
