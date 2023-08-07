@@ -24,8 +24,16 @@
     </ItemGroup>
 
   <ItemGroup>
-    <Content Include="LocalDatabase.db" />  
-    <Content Include="LocalDatabase.db-shm" />  
-    <Content Include="LocalDatabase.db-wal" />  
+    <Content Include="LocalDatabase.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalDatabase.db-shm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalDatabase.db-wal">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+
   </ItemGroup>
+
 </Project>
