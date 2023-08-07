@@ -92,6 +92,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API NAME 1.0.0.0"));
+//app.UseSwaggerUI();
 
 app.Run();
