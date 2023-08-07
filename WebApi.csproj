@@ -25,5 +25,7 @@
 
   <ItemGroup>
     <Content Include="LocalDatabase.db" />  
+    <Content Include="LocalDatabase.db-shm" />  
+    <Content Include="LocalDatabase.db-wal" />  
   </ItemGroup>
 </Project>
