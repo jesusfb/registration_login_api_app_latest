@@ -62,12 +62,18 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 // migrate any database changes on startup (includes initial db creation)
-using (var scope = app.Services.CreateScope())
+/*using (var scope = app.Services.CreateScope())
 {
     var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();    
     dataContext.Database.Migrate();
-}
+}*/
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AppDbContext>();
+    context.Database.Migrate();
+}
 // configure HTTP request pipeline
 {
     // global cors policy
