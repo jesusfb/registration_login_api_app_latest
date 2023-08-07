@@ -2,10 +2,12 @@
 
 #nullable disable
 
-namespace WebApi.Migrations.SqliteMigrations
+namespace WebApi.Migrations
 {
-    public partial class InitialCreate : Migration
+    /// <inheritdoc />
+    public partial class Init : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -25,6 +27,7 @@ namespace WebApi.Migrations.SqliteMigrations
                 });
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
