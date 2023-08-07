@@ -12,10 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
     var env = builder.Environment;
  
     // use sql server db in production and sqlite db in development
-    if (env.IsProduction())
-        services.AddDbContext<DataContext>();
-    else
-        services.AddDbContext<DataContext, SqliteDataContext>();
+    //if (env.IsProduction())
+    //    services.AddDbContext<DataContext>();
+    //else
+   services.AddDbContext<DataContext, SqliteDataContext>();
  
     services.AddCors();
     services.AddControllers();
