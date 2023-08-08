@@ -21,7 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
     services.AddControllers();
 
     builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen(c => {
+    /*builder.Services.AddSwaggerGen(c => {
         c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
             Name = "Authorization",
@@ -46,7 +46,48 @@ var builder = WebApplication.CreateBuilder(args);
                      }
                  });
     });
-
+*/
+    services.AddSwaggerGen(options =>  
+{  
+options.EnableAnnotations();  
+using (var serviceProvider = services.BuildServiceProvider())  
+{  
+var provider = serviceProvider.GetRequiredService<IApiVersionDescriptionProvider>();  
+String assemblyDescription = typeof(Startup).Assembly.GetCustomAttribute<AssemblyDescriptionAttribute>().Description;  
+foreach (var description in provider.ApiVersionDescriptions)  
+{  
+options.SwaggerDoc(description.GroupName, new Microsoft.OpenApi.Models.OpenApiInfo()  
+{  
+Title = $"{typeof(Startup).Assembly.GetCustomAttribute<AssemblyProductAttribute>().Product} {description.ApiVersion}",  
+Version = description.ApiVersion.ToString(),  
+Description = description.IsDeprecated ? $"{assemblyDescription} - DEPRECATED" : $"{assemblyDescription}"  
+});  
+}  
+}  
+options.AddSecurityDefinition("basic", new OpenApiSecurityScheme  
+{  
+Name = "Authorization",  
+Type = SecuritySchemeType.Http,  
+Scheme = "basic",  
+In = ParameterLocation.Header,  
+Description = "Basic Authorization header using the Bearer scheme."  
+});  
+options.AddSecurityRequirement(new OpenApiSecurityRequirement  
+{  
+{  
+new OpenApiSecurityScheme  
+{  
+Reference = new OpenApiReference  
+{  
+Type = ReferenceType.SecurityScheme,  
+Id = "basic"  
+}  
+},  
+new string[] {}  
+}  
+              });  
+  
+            });  
 
     // configure automapper with all automapper profiles from this assembly
     services.AddAutoMapper(typeof(Program));
